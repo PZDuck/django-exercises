@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+
+<ul>
+  {% for friend in object_list %}
+    <li>{{ friend.last_name }} {{ friend.first_name }}</li>
+  {% endfor %}
+</ul>
+
+<a class="btn btn-primary" href="/friends/create" role="button" style="margin-left:20px;">Create a friend</a>
+
+{% endblock %}

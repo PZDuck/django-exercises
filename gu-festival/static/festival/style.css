@@ -1,0 +1,26 @@
+body {
+    background-image: url('img/back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
+    padding: 20px 0;
+  }
+
+#navbarNav {
+    justify-content: center;
+  }
+
+.nav-item {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 2rem;
+  }
+
+.login-logout {
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+  }

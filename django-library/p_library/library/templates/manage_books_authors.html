@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form method='post'>
+  {% csrf_token %}
+  <p class='h3' style="padding: 15px 0px;">Add authors below</p>
+  
+  {% for form in author_formset %}
+    {{ form.as_p }}
+    <br>
+  {% endfor %}
+  
+  {{ author_formset.management_form }}
+  <p class='h3' style="padding: 15px 0px;">Add books below</p>
+  
+  {% for form in book_formset %}
+    {{ form.as_p }}
+    <br>
+  {% endfor %}
+  
+  {{ book_formset.management_form }}
+  <input type='submit' value='Save' />
+</form>
+{% endblock %}

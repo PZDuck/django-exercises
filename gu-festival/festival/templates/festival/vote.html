@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<audio autoplay>
+<source src="{% static 'festival/mp3/vote.mp3' %}" type="audio/mp3">
+</audio>
+<link rel="stylesheet" href="{% static 'festival/vote.css' %}">
+{% endblock %}
+
+{% block title %}
+VASH REKVEST SIR
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+<div class="card text-center">
+  <div class="card-header">
+    GOLOSOWANIE
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ object }}</h5>
+    <p class="card-text">{{ object.request_text }}</p>
+  </div>
+
+  {% if not voted %}
+  <section class='form-section'>
+        <form method="post">
+        {% csrf_token %}
+        <div class="form-group row">
+            {{ form.censor.errors }}
+            <label for="{{ form.censor.id_for_label }}" class='col-sm-12 col-form-label'>
+            <p class='h3'>Hi, {{ user.profile.user }}</p>
+            </label>
+            <div>
+              {{ form.censor }}
+            </div>
+          </div>
+          <div class="form-group row">
+            {{ form.band_request.errors }}
+            <label for="{{ form.band_request.id_for_label }}" class='col-sm-12 col-form-label'>
+            <p class='h4'>Make decision for {{ current_request.band_name }}</p>
+            </label>
+            <div>
+              {{ form.band_request }}
+            </div>
+          </div>
+          <div class="form-group row verdict">
+            {{ form.vote.errors }}
+            <label for="{{ form.vote.id_for_label }}" class='col-sm-2 col-form-label'>
+            Verdict:
+            </label>
+            <div class="col-sm-2">
+              {{ form.vote }}
+            </div>
+          </div>
+
+        <input type="submit" class="btn btn-primary" value="Save">
+      </form>
+  </section>
+  {% else %}
+  <p> You have already voted for this request. Your verdict: {{ voted.0.get_vote_display }}
+  {% endif %}
+</div>
+</div>
+
+{% endblock %}

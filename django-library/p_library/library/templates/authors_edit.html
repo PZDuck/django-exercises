@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block extracss %}
+
+{% load static %}
+<link rel='stylesheet' href={% static 'library/author_edit.css' %}>
+
+{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+  <section class='form-section'>
+    <p class="h3">To add an author, please enter valid information into the fields below</p><br>
+      <form class="author-edit" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-group row">
+            <label class='col-sm-2 col-form-label'>
+              {{ field.label }}
+            </label>
+            <div class="col-sm-10">
+              {{ field }}
+            </div>
+          </div>
+        {% endfor%}
+
+        <input type="submit" class="btn btn-primary" value="Save">
+      </form>
+  </section>
+</div>
+
+{% endblock %}

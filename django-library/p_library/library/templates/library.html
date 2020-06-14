@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% block extracss %}
+
+{% load static %}
+<link rel='stylesheet' href={% static 'library/library.css' %}>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <p style="margin:auto; width:50%;text-align:center;padding:15px;font-size:18px;">
+    Welcome to {{ title }}.<br>
+    There are currently {{ books|length }} books in this collection. Feel free to explore.
+  </p>
+
+  <div class="row books">
+    {% for book in books %}
+      <div class="card col col-md-3" style="width: 18rem;">
+        <img src="../media/{{ book.cover }}" class="card-img-top" alt="..." height="400px" width="auto">
+        <div class="card-body">
+          <div class="title-wrapper">
+            <h5 class="card-title">{{ book.title }}, {{ book.year_release }}</h5>
+              <p><em>by {{ book.author }}</em></p>
+              <p><small>Published by {{ book.redaction }}</small></p>
+          </div>  {# class "title-wrapper" #}
+          <p class="card-text">{{ book.description }}</p>
+          <div class="panel-wrapper">
+            {% if book.copy_count > 0 %}
+              <p class="alert alert-info" role="alert">There are currently {{ book.copy_count }} books available</p>
+            {% else %}
+              <p class="alert alert-warning" role="alert">There are no book available right now</p>
+            {% endif %}
+            <div class="row">
+              <form action="/library/book_increment/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ book.id }}" />
+                <input class="btn btn-outline-primary" type="submit" value="Add" />
+              </form>
+              <form action="/library/book_decrement/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ book.id }}" />
+                <input class="btn btn-outline-primary" type="submit" value="Remove" />
+              </form>
+              <form action="/lend/{{ book.id }}">
+                <input class="btn btn-outline-primary" type="submit" {% if book.copy_count == 0 %}disabled{% endif %} value="Lend" />
+             </form>
+            </div>  {# class "row" #}
+          </div>  {# class "panel-wrapper" #}
+        </div>  {# class "card-body" #}
+      </div>  {# class "card col col-md-3" #}
+    {% endfor %}
+
+  </div>  {# class "row books" #}
+</div>  {# class "container-fluid" #}
+
+{% endblock %}

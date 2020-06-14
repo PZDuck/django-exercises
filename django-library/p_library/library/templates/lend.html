@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<p>You want to lend a book called {{ book.title }} by {{ book.author }}. There are {{ book.copy_count }} available copies. Select a borrower.</p>
+
+{% for friend in friends %}
+  <form method='post'>
+    {% csrf_token %}
+    {{ friend }}
+    <input type='hidden' name='id' value={{ friend.id }} />
+    <input type='submit' />
+  </form>
+{% endfor %}
+
+{% endblock %}

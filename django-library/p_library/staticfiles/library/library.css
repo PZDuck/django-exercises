@@ -1,0 +1,24 @@
+/* Дополнительные стили для страницы библиотеки */
+
+.books {
+    margin: 0 10%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-body .row {
+    justify-content: space-around;
+}
+
+form {
+    padding: 5px;
+}
+
+
+img {
+    border-radius: 5px;
+}

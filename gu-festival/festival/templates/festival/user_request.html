@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'festival/request.css' %}">
+{% endblock %}
+
+{% block title %}
+VASH REKVEST SIR
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+{% if bandrequest %}
+    {% for breq in bandrequest %}
+        <h1 class="display-4">{{ breq }}</h1>
+        
+        <div class="request">
+        <p>Hello, <b>{{ user.profile.user }}</b>!</p>
+        <p>Your band <b>{{ breq.band_name }}</b> has requested a slot on <b>{{ breq.timeslot }}</b></p>
+        {% if breq.status == 3 %}
+            <p class="alert alert-secondary" role="alert">Your request is currently in progress. Please, return later to see if your request has been accepted or rejected.</div>
+        {% elif breq.status == 2 %}
+            <p class="alert alert-danger" role="alert">Your request has been rejected.<p>
+        {% else %}
+            <p class="alert alert-success" role="alert">Your request has been approved. Contact our event administrator for further instructions.</p>      
+        {% endif %}
+    {% endfor %}
+    </div>
+{% else %}
+    <div class="no-request">
+        You posted no requests recently.
+    </div>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages alert alert-warning" role="alert">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+Current borrowers:
+<ul>
+    {% for friend in borrowers %}
+
+    <li>{{ friend }} currently has:
+      <ul class='list-group'>
+        {% for book in friend.borrowed_books.all %}
+          <li class='list=group-item'>{{ book }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}

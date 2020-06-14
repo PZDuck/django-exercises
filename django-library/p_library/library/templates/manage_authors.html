@@ -1,0 +1,17 @@
+{% extends 'index.html '%}
+
+{% block content %}
+
+<form method='post'>
+  {% csrf_token %}
+  
+  {% for form in author_formset %}
+    {{ form.as_p }}
+    <br>    
+    {{ author_formset.management_form }}
+  {% endfor %}
+  
+  <input type='submit' value='Save' />
+</form>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+ 
+<body>  
+<form method="post">  
+  {% csrf_token %}  
+    {{ form.as_ul }}  
+    <input type="submit" value="Создание профайла">  
+</form>  
+</body>  
+
+{% endblock %}

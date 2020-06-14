@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <ul>
+  {% for red in redactions %}
+    <li class="list-group-item">
+      <span style="font-size:18px;">"{{ red.name }}" with {{ red.book_set.count }} items</span>
+      <ul class="list-group">
+    
+        {% for book in books %}
+          {% if book.redaction.id == red.id %}
+            <li class="list-group-item">
+              {{ book.title }} by {{ book.author }}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </li>
+    </ul>
+  {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

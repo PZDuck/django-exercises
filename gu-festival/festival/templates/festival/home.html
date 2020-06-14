@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel='stylesheet' href="{% static 'festival/home.css' %}">
+{% endblock %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class='container'>
+  <img id="logo" src="{% static 'festival/img/logo.png' %}">
+    <h1 class="display-4">
+    {% if user.is_authenticated %}
+    Hello, {{ user }}! 
+    {% endif %}
+    Welcome</h1>
+    <p class="lead">{% lorem 1 %}</p>
+    <hr class="my-4">
+    <p>Please use the navbar above to navigate through this humble website</p>
+  </div>
+</div>
+{% endblock %}

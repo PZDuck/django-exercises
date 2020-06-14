@@ -1,0 +1,36 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0.8;
+}
+
+.signup-block {
+    margin: 50px 0;
+    font-size: 20px;
+}
+
+.form-block {
+    display: contents;
+}
+
+.login {
+    width: 80%;
+    align-self: center;
+}
+
+.check {
+    position: relative;
+    left: 8rem;
+}
+
+.custom-control-form::before {
+    position: relative;
+}
+
+.custom-control-form::after {
+    left: inherit;
+}

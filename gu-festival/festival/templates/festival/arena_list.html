@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'festival/schedule.css' %}">
+{% endblock %}
+
+{% block title %}
+Schedule
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% for arena in arena_list %}
+    <div class="arena">
+    <h3 class="display-4">{{ arena.name }}</h3>
+
+    <div class="timeslots">
+    
+        <div class="date">
+        <p class="date-head">30 ЯНВАРЯ</p>
+        {% for timeslot in arena_timeslot_first %}
+            {% if timeslot.arena == arena %}
+                <div class="timeslot">
+                <h2>{{ timeslot.get_time_display }}</h2>
+                    {% if user.groups.values.0.id == 1 or user.is_staff %}
+                        <div class="alert alert-info" role="alert">
+                            <li>Слотов: {{ timeslot.capacity }}</li>
+                            <li>Зарезервировано: {{ timeslot.reserved }}</li>
+                        </div>
+                    {% endif %}
+                    <div class="bands">
+                    {% if timeslot.reserved != 0 %}
+                        {% for band in bands %}
+                            {% if band.timeslot == timeslot %}
+                                <div class="band">{{ band.band_name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No performers</p>
+                    {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <div class="date">
+        <p class="date-head">31 ЯНВАРЯ</p>
+        {% for timeslot in arena_timeslot_second %}
+            {% if timeslot.arena == arena %}
+                <div class="timeslot">
+                <h2>{{ timeslot.get_time_display }}</h2>
+                    {% if user.groups.values.0.id == 1 or user.is_staff %}
+                        <div class="alert alert-info" role="alert">
+                            <li>Слотов: {{ timeslot.capacity }}</li>
+                            <li>Зарезервировано: {{ timeslot.reserved }}</li>
+                        </div>
+                    {% endif %}
+                    <div class="bands">
+                    {% if timeslot.reserved != 0 %}
+                        {% for band in bands %}
+                            {% if band.timeslot == timeslot %}
+                                <div class="band">{{ band.band_name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No performers</p>
+                    {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+       
+    </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

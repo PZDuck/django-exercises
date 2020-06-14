@@ -1,0 +1,17 @@
+.jumbotron {
+    opacity: 0.8;
+}
+
+#logo {
+    margin: 20px;
+}
+
+.display-4 {
+    margin: 20px;
+}
+
+.container:nth-child(1) {
+    max-width: 100%;
+    width: 75%;
+    text-align: center;
+}

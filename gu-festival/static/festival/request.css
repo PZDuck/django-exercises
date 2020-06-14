@@ -1,0 +1,46 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0.8;
+    height: 100%;
+}
+
+.display-4 {
+    position: absolute;
+    top: 0;
+    margin: 50px;
+}
+
+.alert {
+    opacity: 1;
+    color: #000;
+    border-radius: 15px;
+}
+
+.alert-success {
+    background-color: #66e685;
+}
+
+.alert-secondary {
+    background-color: #bbb;
+}
+
+.alert-danger {
+    
+}
+
+.request {
+    font-size: 28px;
+}
+
+.no-request {
+    opacity: 1;
+    font-size: 32px;
+    font-weight: 500;
+    
+}

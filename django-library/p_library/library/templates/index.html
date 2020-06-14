@@ -1,0 +1,70 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel='stylesheet' href={% static 'library/bootstrap.css' %}>
+  <link rel='stylesheet' href={% static 'library/style.css' %}>
+  {% block extracss %}{% endblock %}
+  <title>Lib</title>
+
+</head>
+
+<header>
+  <nav class="navbar navbar-dark bg-dark">
+    <ul>
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'library:library' %}">Library</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'library:redactions' %}">Redactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'library:home' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'library:author_list' %}">Authors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'library:borrowers' %}">Borrowers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'library:friends' %}">Friends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+        {% if user.is_authenticated %}
+          href="{% url 'library_auth:logout' %}">Logout
+        {% else %}
+          href="{% url 'library_auth:login' %}">Login
+        {% endif %}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<body>
+
+  {% block content %}
+  <div class="jumbotron">
+    <h1 class="display-4">
+    {% if user.is_authenticated %}
+    Hello, {{ user }}! 
+    {% endif %}
+    Welcome to my Personal Library</h1>
+    <p class="lead">This is a collection of my personal preference built with tons of bootstrap copypastes</p>
+    <hr class="my-4">
+    <p>Please use the navbar above to navigate through this humble website</p>
+  </div>
+
+  <div class='container'>
+
+  </div>
+  {% endblock %}
+
+</body>
+
+</html>
